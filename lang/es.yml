@@ -1,0 +1,43 @@
+# Spanish strings go here for Rails i18n
+es:
+# title
+  workload_title: "Workload"
+
+# label
+  label_range: "Rango"
+  label_monthsfrom: "meses de"
+  label_today: "Fecha de c&aacute;lculo"
+  label_users: "Usuarios"
+  label_showissues: "Mostrar Tareas"
+  label_legend: "leyenda"
+  label_timing: "cronometraje"
+  label_perfect: "perfecto"
+  label_ontime: "En tiempo" 
+  label_delay: "Retraso"
+  label_bigdelay: "Mucho retraso"
+  label_notiming: "Sin timing" 
+  label_parentdoadd: "Tarea Padre (no suma)"
+  label_timespent: "Tiempo dedicado" 
+  label_parentdontadd: "Tarea Padre (no suma)" 
+  label_past: "Pasado" 
+  label_outoftimebudget: "Dedicado m&aacute;s tiempo del previsto" 
+
+# navigation
+  label_previous: "Anterior"
+  label_next: "Después"
+
+# Legend
+  label_legend: "leyenda"
+
+#Statuses
+  status_hdedicated: "H. Dedicados"
+  status_priority: "Prioridad"
+  status_beginend: "Inicio/fin"
+  status_hassigned: "H. Asignadas"
+  status_status: "Estado"
+  status_ratiodonetask: "% tarea"
+  status_ptime: "% tiempo"
+  status_phdedicated: "percent horas dedicado"
+  status_effectiveness: "Eficacia"
+  status_surplus: "Remanente"
+  status_dcr: "Desfase Consumo recursos"

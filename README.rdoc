@@ -1,0 +1,21 @@
+= redmine_dnoise_workload
+
+This is a a plugin for Redmine version 2.2.0.
+
+Thanks to speedy for his internalization modification & dnoise for his original works.
+
+= Description
+This plugin uses graphics to represent total workloads and also the workload involved in the following tasks:
+* Average time assigned to issues. The plugin shows the amount of hours per issues within a project
+as well as the total of hours assigned to that project. Different colours are assigned to each issue.
+* This application also represents the % of hours used against the % of hours estimated for a issue. It
+also indicates the amount of extra time used over the initial estimate. In addition to this, the plugin
+also advise if a project doesn’t have assigned and also beginning and end dates.
+* This plug-in determines the timing of an application, showing different status: on time, delayed, etc
+* This plugin is especially helpful in organisations with a high workload and/or a organisations with
+scarce human resources
+
+= Releases
+== version 1.0
+* Modified for Redmine version 2.2.0
+* Add the +View Workload+ permission
