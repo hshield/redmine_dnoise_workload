@@ -7,10 +7,9 @@ class WorkLoadController < ApplicationController
   include QueriesHelper
 
 
-  
+
   def show
-    
-    
+
     @fecha_actual = (!params[:fecha_actual].nil? && params[:fecha_actual].respond_to?(:to_date)  ) ? params[:fecha_actual].gsub('/', '-').to_date.strftime("%Y-%m-%d") : DateTime.now.strftime("%Y-%m-%d")
     if ( params[:month].nil? ||   params[:months].nil? ||  params[:year].nil?   ) then
       params[:month] = DateTime.now.month
@@ -20,9 +19,14 @@ class WorkLoadController < ApplicationController
     params[:show_issues] = ( params[:show_issues].nil? ) ? "0" : params[:show_issues]
     @gantt = Redmine::Helpers::Gantt.new(params)
     retrieve_query
-    @gantt.query = @query if @query.valid? 
+    @gantt.query = @query if @query.valid?
 
-    @usuarios = (!params[:usuarios_id].nil?) ?  User.find_all_by_id(params[:usuarios_id]) : User.active
+	# set to current user if no users are selected
+	if (params[:usuarios_id].nil?)
+		params[:usuarios_id] = User.current.id
+	end
+
+    @usuarios = User.find_all_by_id(params[:usuarios_id])
 	@usuarios = @usuarios.sort_by { |u| [u.firstname.downcase, u.lastname.downcase] }
     @utils = ListingUser.new(IssueStatus.find_all_by_is_closed(false, :select => 'id').map(&:id))
     @total_days = @utils.tools.distance_of_time_in_days(@gantt.date_from, @gantt.date_to)
@@ -30,8 +34,8 @@ class WorkLoadController < ApplicationController
     @lunes = @gantt.date_from.to_date
     @dias_hasta_el_lunes.times do @lunes = @lunes.next end
     @num_semanas =  (@total_days / 7).round
-   
-    
+
+
     current_date = @gantt.date_from
     final_date = @gantt.date_to
     @barras_days = []
@@ -39,9 +43,9 @@ class WorkLoadController < ApplicationController
       @barras_days.push(16 * @utils.tools.distance_of_time_in_days(@gantt.date_from.to_date.strftime("%Y-%m-%d"),  current_date.to_date.end_of_month.strftime("%Y-%m-%d")))
       current_date = current_date.to_date.end_of_month + 1
     end
-    
-   
-    
+
+
+
   end
 
 end
