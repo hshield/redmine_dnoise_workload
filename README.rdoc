@@ -1,6 +1,10 @@
 = redmine_dnoise_workload
 
-This is a a plugin for Redmine version 2.2.0.
+This is a a plugin for Redmine version 2.2.0, 2.2.1, 2.2.2.
+It is compatible with the following Redmine versions:
+* 2.2.0
+* 2.2.1
+* 2.2.2
 
 Thanks to speedy for his internalization modification & dnoise for his original works.
 
@@ -12,10 +16,34 @@ as well as the total of hours assigned to that project. Different colours are as
 also indicates the amount of extra time used over the initial estimate. In addition to this, the plugin
 also advise if a project doesn’t have assigned and also beginning and end dates.
 * This plug-in determines the timing of an application, showing different status: on time, delayed, etc
-* This plugin is especially helpful in organisations with a high workload and/or a organisations with
+* This plugin is especially helpful in organisations with a high workload and/or an organisation with
 scarce human resources
 
+= Requirements
+* Redmine 2.2.0 / Redmine 2.2.1 / Redmine 2.2.2
+
+= Installation
+* Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins
+* Cd to your redmine plugins/ dir
+* Git-clone the plugin from this repo into a folder in there (git clone git://github.com/hshield/redmine_dnoise_workload redmine_dnoise_workload)
+* Run the plugin migrations +rake redmine:plugins:migrate+
+* Restart your Redmine web servers (e.g. mongrel, thin, mod_rails)
+* Login to your Redmine install as an Administrator
+* Setup the permissions for the Workload module for your roles
+
+= Notes
+* The Workload module in the Project's page isn't used. So, you can enable / disable it with no effects to the Workload page at all
+
 = Releases
+
+== version 2.0
+* Fix: issues in the chart aren't showing if they are in the first week of the calendar
+* Change the page header to make it similar to other Redmine pages
+* The chart's header will stay at the top when the scrolling the graph up/down. This way, it is easier to see the date
+
+== version 1.1
+* Change the default view to current user's workload to speed up processing time
+
 == version 1.0
 * Modified for Redmine version 2.2.0
 * Add the +View Workload+ permission

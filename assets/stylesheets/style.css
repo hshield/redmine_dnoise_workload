@@ -2,7 +2,7 @@
 
 .controller-work_load .header_content { width:100%; float:left;}
 .controller-work_load .header_content_top { width:100%; float:left;}
-.controller-work_load #top_left {float:left; width:330px;height:54px;background:#eeeeee url(../images/logo_workload.png) no-repeat 30px 30px; position:relative; border-left: 1px solid #C0C0C0;}
+.controller-work_load #top_left {float:left; width:330px;height:54px;background:#eeeeee none no-repeat 30px 30px; position:relative; border-left: 1px solid #C0C0C0;}
 .controller-work_load .header_content_top_left { width:7%; float:left;}
 .controller-work_load .header_content_top_right { width:10%; float:right; min-width:140px;}
 .controller-work_load .header_content_top_right span { width:100px; float:left; font-size:9px; height:30px; margin-top:5px;}
@@ -12,7 +12,7 @@
 .controller-work_load .header_content_top_right .logo_dnoise { background:url(../images/logo_dnoise.png) no-repeat left; float:left; width:40px; height:40px;}
 .controller-work_load .header_content_bottom { width:100%; float:left; margin-bottom:20px;  }
 
-.controller-work_load .header_content_bottom_left { width:25%; min-width:280px; float:left; margin-top:10px; height:auto;}
+.controller-work_load .header_content_bottom_left { width:45%; min-width:280px; float:left; margin-top:10px; height:auto;}
 .controller-work_load .header_content_bottom_left .buttons {float:left; width:auto; margin-left: 4px; margin-bottom:0; margin-top:0; }
 .controller-work_load .header_content_bottom_left label {float:left; width:100%; font-size:11px;}
 .controller-work_load .header_content_bottom_left .calendar {float:left; width:auto; margin-left: 4px; margin-top:15px;}
@@ -34,10 +34,10 @@
 .controller-work_load .header_content_bottom_left .multiselect p {float:left; margin:0 10px 0 0; padding:2px; color:#8C8C8C; font-weight:bold;}
 .controller-work_load .header_content_bottom_left .multiselect select {float:left; margin:0 10px 0 0; padding:3px; font-size: 0.9em; color:#8C8C8C; font-weight:normal;}
 
-.controller-work_load .all { width:100%; max-height:650px; overflow:auto; border-right: 2px solid #C0C0C0; z-index: 0;padding-bottom:50px;}
-.controller-work_load #top {float:left; width:3276px; height:55px; position:relative;}
+.controller-work_load .all { width:100%; max-height:650px; overflow:auto; border-right: 2px solid #C0C0C0; z-index: 0;padding-bottom:50px; position:relative;}
+.controller-work_load #top {float:left; width:3276px; height:55px; position:relative;z-index:10;}
 .controller-work_load #bottom {float:left; width:3278px; height:auto !important; }
-.controller-work_load #top_left {float:left; width:330px;height:54px;background:#eeeeee url(../images/logo_workload.png) no-repeat 30px 15px; position:relative; border-left: 1px solid #C0C0C0;}
+.controller-work_load #top_left {float:left; width:330px;height:54px;background:#eeeeee none no-repeat 30px 15px; position:relative; border-left: 1px solid #C0C0C0;}
 .controller-work_load #top_right {float:left; width:2943px; height: 54px;background: #eee; position:relative;}
 .controller-work_load #bottom-left { position:relative; float:left; height: auto !important;}
 .controller-work_load .workload { float:left; padding-left:30px; font-size:12px; width:300px; border-left: 1px solid #c0c0c0; border-right: 1px solid #c0c0c0;}
@@ -88,18 +88,27 @@
 .controller-work_load #content .user .user_each_hours span.tarea5 { float:left; background:url(../images/tarea_padre.png) no-repeat left; padding-left:30px; height:15px; max-width:265px; width:auto; color:#666;}
 .controller-work_load #content .user .user_each_hours span.tarea_remanente { float:left; background:url(../images/clock.png) no-repeat left; padding-left:30px; height:15px; max-width:265px; width:auto; color:#666;}
 
-
-.controller-work_load .months_per_year {height:16px; width:100%; float:left;}
-.controller-work_load .days_per_month {height:16px; width:100%; float:left; position: relative;}
-.controller-work_load .days_per_month .gantt_hdr { float: left; font-size: 0.7em; top: 4px; }
-.controller-work_load .days_per_week { height:16px; width:100%; float:left; position:relative;}
-.controller-work_load .days_per_week .gantt_hdr {top:5px; width:15px; font-size:0.7em; float:left; }
-.controller-work_load .days_per_month .day {float:left; display:inline; width:16px; text-align:center; font-weight:bold; padding-top: 3px;}
-.controller-work_load .days_per_month .day:last-child {width:15px !important; }
+.controller-work_load .months_per_year { height: 19px; width:100%;}
+.controller-work_load .days_per_month,
+.controller-work_load .days_per_week {
+	height: 19px;
+	width:100%;
+	position: relative;
+}
+.controller-work_load .days_per_month .gantt_hdr,
+.controller-work_load .days_per_week .gantt_hdr {
+	font-size: 0.7em;
+	position: absolute;
+	width: 16px;
+	height: 19px;
+	border-top: 0 none;
+	line-height: 17px;
+	vertical-align: middle;
+}
 
 .controller-work_load .all_users_workload {height: auto; overflow: hidden; width:2944px; float:left; background-image:url(../images/bg_calendar.png); background-repeat: repeat; background-position: -1px 0px;}
 .controller-work_load .total_user_workload { width:2942px; height:auto; float:left; border-bottom: 3px solid #999999;}
-.controller-work_load .user_workload_per_week { height: auto; left: 47px; position: relative; top: 0px; width: 112px; float:left; padding-bottom:13px;}
+.controller-work_load .user_workload_per_week { height: auto; left: 47px; position: relative; top: 0px; float:left; padding-bottom:13px;}
 .controller-work_load .workload.week { left: 0px; padding-top: 10px; height: 20px; padding-left:0; position:relative; float:left; z-index:1; border:0; width: 112px;}
 .controller-work_load .workload.remanente { left: 0px; padding-left:0; padding-top:10px; position: relative; width: 100%; border:0; height:17px;}
 
@@ -127,7 +136,7 @@
 .controller-work_load #today { background: #E5352C; position:relative; left:463px; width:3px;}
 .controller-work_load .month_end { background: #999999; position:relative; left:680px; width:3px;}
 
-.controller-work_load .info_widget { width:300px; background:#FFFFCC; border:1px solid #cccccc; height:auto; position:absolute; margin:17px 28px; padding:7px; display:none; color:#000;}
+.controller-work_load .info_widget { width:300px; background:#FFFFCC; border:1px solid #cccccc; height:auto; position:absolute; margin:17px 28px; padding:7px; display:none; color:#000; z-index:10;}
 .controller-work_load .info_widget .tarea1 {font-size:12px; margin-bottom:3px; width:100%;}
 .controller-work_load .info_widget .tarea1 span strong {background:url(../images/perfect.png) no-repeat left; padding-left:20px; color:#000 !important;}
 .controller-work_load .info_widget .tarea2 {font-size:12px; margin-bottom:3px; width:100%;}
@@ -307,8 +316,8 @@ a.calencerrar span{
 .capaselanos a.ultimo{
 	border: 0;
 }
- 
- 
+
+
 /* Modificaciones 19/07/2011 */
 
 .controller-work_load .black { background:url(../images/tarea11.png) no-repeat left; padding-left:40px; float:left;width:30%;}

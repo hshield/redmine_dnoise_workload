@@ -1,12 +1,12 @@
 <%
 @gantt.view = self
 subject_width = 330
-header_heigth = 18
-headers_height = header_heigth
-show_weeks = true
+header_height = 18
+show_date = true
 show_days = true
-headers_height = 3*header_heigth
+headers_height = 3*header_height
 zoom = 16
+column_width = 16;
 
 g_width = (@gantt.date_to - @gantt.date_from + 1)*zoom
 g_height = [(20 * (10 + 6))+150, 206].max
@@ -15,21 +15,8 @@ calculos = {}
 pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 
 %>
-
+<h2>Workload</h2>
 <div class="header_content">
-	<div class="header_content_top">
-		<div class="header_content_top_left">
-			<h2>Workload</h2>
-		</div>
-		<div class="header_content_top_right">
-			<span>
-			 <a href="http://www.d-noise.net/" title="D-noise" target="_blank">www.d-noise.net</a>
-		  <br />
-		  <p>Powered by DNOiSE</p>
-		 </span>
-		 <div class="logo_dnoise">&nbsp;</div>
-		</div>
-	</div>
 	<div class="header_content_bottom">
 		<%= form_tag({:controller => 'work_load', :action => 'show', :project_id => @project, :month => params[:month], :year => params[:year], :months => params[:months]}, :method => :get, :id => 'query_form', :class => 'content_form') do %>
 			<div class="header_content_bottom_left">
@@ -94,7 +81,6 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 			&nbsp;
 		</div>
 		<div class="gantt_hdr" id="top_right">
-
 			<div class="months_per_year">
 				<%
 				#
@@ -102,7 +88,7 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 				#
 				month_f = @gantt.date_from
 				left = 0
-				height = (show_weeks ? header_heigth : header_heigth + g_height)
+				height = (show_date ? header_height : header_height + g_height)
 				counter = 1
 				@gantt.months.times do
 					klass = 'month_bg1'
@@ -120,51 +106,31 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 				counter = counter + 1
 				end %>
 			</div>
-			<div class="days_per_month" style='position:absolute;'>
+			<div class="days_per_month">
 				<%
 					#
-					# Weeks headers
+					# date headers
 					#
-					if show_weeks
+					if show_date
 						left = 0
-						height = (show_days ? header_heigth-1 : header_heigth-1 + g_height)
-						if @gantt.date_from.cwday == 1
-							# @date_from is monday
-							week_f = @gantt.date_from
-						else
-							# find next monday after @date_from
-							week_f = @gantt.date_from + (7 - @gantt.date_from.cwday + 1)
-							width = (7 - @gantt.date_from.cwday + 1) * zoom-1
-
+						height = g_height + header_height - 1
+						start_date = @gantt.date_from
+						while (start_date <= @gantt.date_to) do
+							width =  zoom - 1
+							div_style = 'left:' + left.to_s + 'px;'
+							div_class = 'gantt_hdr date-' + start_date.day.to_s
 							%>
-							<div style="left:<%= left %>px;top:19px;width:<%= width %>px;height:<%= height %>px;" class="gantt_hdr">&nbsp;</div>
+							<div class="<%= div_class %>" style="<%= div_style %>">
+								<%= start_date.day %>
+							</div>
 							<%
-							left = left + width+1
-						end %>
-						<%
-							while week_f <= @gantt.date_to
-								width = (week_f + 6 <= @gantt.date_to) ? 7 * zoom -1 : (@gantt.date_to - week_f + 1) * zoom-1
-
-								%>
-									<div style="left:<%= left %>px;top:19px;width:<%= width %>px;height:<%= height %>px;" class="gantt_hdr">
-										<%
-											s = week_f
-											7.times do |x|
-												%>
-													<div class="day"><%=s.day%></div>
-												<%
-												s = s.next
-											end
-										%>
-									</div>
-								<%
-								left = left + width+1
-								week_f = week_f+7
-							end
+							left = left + width + 1
+							start_date = start_date.next
+						end
 					end
 				%>
 			</div>
-			<div class="days_per_week" style='position:absolute;'>
+			<div class="days_per_week">
 				<%
 				today = 16 * (@utils.tools.distance_of_time_in_days(@gantt.date_from, @fecha_actual) - 1)
 				#
@@ -172,12 +138,14 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 				#
 				if show_days
 					left = 0
-					height = g_height + header_heigth - 1
+					height = g_height + header_height - 1
 					wday = @gantt.date_from.cwday
 					(@gantt.date_to - @gantt.date_from + 1).to_i.times do
 						width =  zoom - 1
+						div_style = 'left:' + left.to_s + 'px;'
+						div_class = 'gantt_hdr wday-' + wday.to_s
 						%>
-						<div style="left:<%= left %>px;top:37px;width:<%= width %>px;height:<%= height %>px;font-size:0.7em;<%= "background:#f1f1f1;" if wday > 5 %>" class="gantt_hdr">
+						<div style="<%= div_style %>" class="<%= div_class %>">
 							<%= day_name(wday).first %>
 						</div>
 						<%
@@ -383,7 +351,6 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 
 		</div>
 
-
 		<div class="all_users_workload" style="background-position:<%=pos_background%>px 0px">
 			<%
 				@usuarios.each do |user|
@@ -391,30 +358,44 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 			%>
 					<div class="total_user_workload">
 						<%
-							@num_semanas.times do |c|
-								current_week = @lunes.to_time + ( (  c  )  * ( 86400 * 7 ) )
-								current_day = current_week.to_date
-								counter_worksloads = true
-						%>
+							# current_date is always monday, except for the first week
+							current_date = @gantt.date_from
 
-								<div class="user_workload_per_week" style="left:<%=(16 * @dias_hasta_el_lunes)%>px">
+							@number_of_weeks.times do |c|
+
+								# number of days in this week
+								# use 8, since cwday starts with 1 so we don't need to add 1 again
+								num_days_this_week = 8 - current_date.cwday;
+
+								# the final week might not be a full 7 days
+								if (current_date + num_days_this_week > @gantt.date_to) then
+									num_days_this_week = (@gantt.date_to.cwday - current_date.cwday) + 1
+								end
+
+								counter_worksloads = true
+
+								div_style = 'left:0;' +
+											'width:' + (num_days_this_week * column_width).to_s + 'px'
+						%>
+								<div class="user_workload_per_week" style="<%= div_style %>">
 
 									<%
 										dia = {}
 
 										execeded_time = {}
-										7.times do |x|
+										current_day = current_date;
+										num_days_this_week.times do |x|
 											dia[x] = 'tarea1 blank'
 											execeded_time[x] = ''
 											if (workload.include?(current_day.strftime("%Y-%m-%d")) && current_day.to_time < @fecha_actual.to_time - 86400 ) then
 												dia[x] = 'tarea_g'
-											elsif (workload.has_key?(current_day.strftime("%Y-%m-%d")))then
+											elsif (workload.has_key?(current_day.strftime("%Y-%m-%d"))) then
 												level = workload[current_day.strftime("%Y-%m-%d")].round
-												if current_day.to_time > @fecha_actual.to_time - 86400 then
+												if (current_day.to_time > @fecha_actual.to_time - 86400) then
 													execeded_time[x] = level
-													if level > 7 && level < 12 then
+													if (level > 7 && level < 12) then
 														dia[x] = 'tarea8'
-													elsif level > 11 then
+													elsif (level > 11) then
 														dia[x] = 'tarea9'
 													else
 														dia[x] = "tarea#{level}"
@@ -427,35 +408,34 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 									%>
 
 									<div class="workload week">
-										<% 7.times do |x| %>
+										<% num_days_this_week.times do |x| %>
 											<div class="workload day"><span class="<%=dia[x]%> total"><%=execeded_time[x]%></span></div>
 										<% end %>
 									</div>
 
-									<% current_day = current_week.to_date %>
-
 									<%
 										counter = 1
 										issues_by_user[user.id].each do |issue|
-
 											if( params[:show_issues] == "1" ) then
-
-												current_day = current_week.to_date
 									%>
-
-												<div class="workload tarea _<%=issue.id%>">
+												<div class="workload tarea issue_<%=issue.id%>">
 													<%
-														7.times do |x|
+														current_day = current_date
+														num_days_this_week.times do |x|
 													%>
 															<div class="workload day day-<%= current_day.strftime("%w") %> <%= current_day.strftime("%a").downcase %>">
-																<span class="tarea<%=calculos[issue.id].get_load_by_day(current_day.strftime('%Y-%m-%d'))%> <%=current_day.strftime('%Y-%m-%d')%>"><!-- horas totales  <%=current_day.strftime("%Y-%m-%d") %> --></span>
+																<%
+																	span_class = 'tarea' + calculos[issue.id].get_load_by_day(current_day.strftime('%Y-%m-%d')).to_s + ' ' +
+																				'date-' + current_day.strftime('%Y-%m-%d')
+																%>
+																<span class="<%= span_class %>"><!-- horas totales  <%=current_day.strftime("%Y-%m-%d") %> --></span>
 															</div>
 													<%
 															current_day = current_day.next
 														end
 													%>
 												</div>
-											<% elsif params[:show_issues] == "1" %>
+											<% elsif params[:show_issues] != "1" %>
 												<div class="workload tarea tarea1"> </div>
 											<% elsif counter_worksloads == true && params[:show_issues] != "1"
 												counter_worksloads = false
@@ -472,11 +452,11 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 												<div class="workload tarea undefined header"></div>
 												<%
 													issues_remanentes_by_user[user.id].each do |issue|
-														current_day = current_week.to_date
 												%>
-														<div class="workload tarea _<%=issue.id%>">
+														<div class="workload tarea issue_<%=issue.id%>">
 															<%
-																7.times do |x|
+																current_day = current_date
+																num_days_this_week.times do |x|
 															%>
 																	<div class="workload day day-<%= current_day.strftime("%w") %> <%= current_day.strftime("%a").downcase %>"><span class="tarea <%=(@utils.issue_have_work(issue, current_day)) ? 'tarea_u' :'blank' %>"></span></div>
 															<%
@@ -489,7 +469,11 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 									<% end %>
 
 								</div>	<!-- /div.user_workload_per_week -->
-							<% end %>
+						<%
+								# go to the monday next week
+								current_date += num_days_this_week
+							end
+						%>
 						</div>
 
 				<% end %>
@@ -507,7 +491,7 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 		<td style="text-align:left">
 			<a href='show?<%= params.merge({:year => (@gantt.date_from << @gantt.months).year, :month => (@gantt.date_from << @gantt.months).month, :zoom => zoom, :months => @gantt.months }).to_query%>'><%=t :label_previous%></a>
 		</td>
-		<td style="text-align:left">
+		<td style="text-align:right">
 			<a href='show?<%= params.merge({:year => (@gantt.date_from >> @gantt.months).year, :month => (@gantt.date_from >> @gantt.months).month, :zoom => zoom, :months => @gantt.months }).to_query%>'><%=t :label_next%></a>
 		</td>
 	</tr>
@@ -539,6 +523,6 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 
 <script>
 	jQuery(document).ready(function($){
-		createCss(new Array(<%=@barras_days.join(',')%>));
+		createCss(new Array(<%=@end_of_month_positions.join(',')%>));
 	});
 </script>
