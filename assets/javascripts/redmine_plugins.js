@@ -66,19 +66,63 @@ jQuery(document).ready(function($) {
 			}
 		}, ".user_each_hours");
 
+	var top_obj = $("#top");
+	var top_obj_height = top_obj.height();
+	var top_obj_mid_height = top_obj_height / 2;
+
+	// clone the top obj
+	var top_obj_clone = top_obj.clone()
+							.attr("id", "top_clone")
+							.css({
+								position: "absolute",
+								left: 0,
+								top: 0
+							})
+							.hide()
+							.prependTo(".all");
+
 	$(".all").on("scroll", function(e) {
 		var container_scroll_top = $(this).scrollTop();
 
-		if (container_scroll_top > 0) {
-			$("#top").css({
-				position: "absolute",
-				top: container_scroll_top + "px"
-			});
-		} else {
-			$("#top").css({
-				position: "relative",
-				top: "0"
-			})
+		// animate show
+		if (container_scroll_top > top_obj_height) {
+			top_obj.css("visibility", "hidden");
+			if (top_obj_clone.data("animated") !== true) {
+				top_obj_clone
+					.show()
+					.stop()
+					.animate({
+						top: container_scroll_top
+					}, "fast", function() {
+						$(this).data("animated", true);
+					});
+			} else {
+				top_obj_clone.css("top", container_scroll_top);
+			}
+		}
+
+		// animate to close
+		else if (container_scroll_top > top_obj_mid_height) {
+			top_obj_clone
+				.removeData("animated")
+				.stop()
+				.animate({
+					top: 0
+				}, "fast", function() {
+					$(this).hide();
+				});
+			top_obj.css("visibility", "visible");
+		}
+
+		// force hide
+		else {
+			top_obj_clone
+				.removeData("animated")
+				.stop()
+				.hide();
+
+			// make sure that it always visible the the clone isn't showing anymore
+			top_obj.css("visibility", "visible");
 		}
 	});
 

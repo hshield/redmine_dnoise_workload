@@ -35,8 +35,8 @@
 .controller-work_load .header_content_bottom_left .multiselect select {float:left; margin:0 10px 0 0; padding:3px; font-size: 0.9em; color:#8C8C8C; font-weight:normal;}
 
 .controller-work_load .all { width:100%; max-height:650px; overflow:auto; border-right: 2px solid #C0C0C0; z-index: 0;padding-bottom:50px; position:relative;}
-.controller-work_load #top {float:left; width:3276px; height:55px; position:relative;z-index:10;}
-.controller-work_load #bottom {float:left; width:3278px; height:auto !important; }
+.controller-work_load #top, .controller-work_load #top_clone {width:3276px; height:55px; position:relative;z-index:10;}
+.controller-work_load #bottom {width:3276px; height:auto !important; }
 .controller-work_load #top_left {float:left; width:330px;height:54px;background:#eeeeee none no-repeat 30px 15px; position:relative; border-left: 1px solid #C0C0C0;}
 .controller-work_load #top_right {float:left; width:2943px; height: 54px;background: #eee; position:relative;}
 .controller-work_load #bottom-left { position:relative; float:left; height: auto !important;}
@@ -49,29 +49,35 @@
 .controller-work_load .workload.day.fri {left:64px; width: 0; float:left;}
 .controller-work_load .workload.day.sat {left:80px; width: 0; float:left;}
 .controller-work_load .workload.day.sun {left:96px; width: 0; float:left;}
-.controller-work_load .workload.day span.tarea1.total { float:left; background:url(../images/tarea1.png) repeat-y left; padding-left:30px; height:25px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea2.total { float:left; background:url(../images/tarea2.png) repeat-y left; padding-left:30px; height:25px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea3.total { float:left; background:url(../images/tarea3.png) repeat-y left; padding-left:30px; height:25px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea4.total { float:left; background:url(../images/tarea4.png) repeat-y left; padding-left:30px; height:25px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea5.total { float:left; background:url(../images/tarea5.png) repeat-y left; padding-left:30px; height:25px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea6.total { float:left; background:url(../images/tarea6.png) repeat-y left; padding-left:30px; height:25px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea7.total { float:left; background:url(../images/tarea7.png) repeat-y left; padding-left:30px; height:25px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea8.total { float:left; background:url(../images/tarea8.png) repeat-y left; padding-left:0px; text-align: center; padding-top:7px; height:18px; font-size:10px; width:100%; color:#ffffff; text-indent:0px;}
-.controller-work_load .workload.day span.tarea9.total { float:left; background:url(../images/tarea_11.png) repeat-y left; padding-left:0px; text-align: center; padding-top:7px; height:18px; font-size:10px; width:100%; color:#f53705; text-indent:0px;}
-.controller-work_load .workload.day span.tarea_a.total { float:left; background:url(../images/tarea9.png) repeat-y left; padding-left:30px; height:25px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea_g.total { float:left; background:url(../images/tarea10.png) repeat-y left; padding-left:30px; height:25px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea1 { float:left; background:url(../images/tarea1_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea2 { float:left; background:url(../images/tarea2_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea3 { float:left; background:url(../images/tarea3_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea4 { float:left; background:url(../images/tarea4_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea5 { float:left; background:url(../images/tarea5_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea6 { float:left; background:url(../images/tarea6_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea7 { float:left; background:url(../images/tarea7_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea8 { float:left; background:url(../images/tarea8_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea9 { float:left; background:url(../images/tarea11.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea_a { float:left; background:url(../images/tarea9_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.tarea_g { float:left; background:url(../images/tarea10_border.png) repeat-y left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
-.controller-work_load .workload.day span.remanente {float:left; background:url(../images/remanente.png) repeat-y left; height:11px; width:100%; text-indent:-9999px;}
+
+.controller-work_load .workload.day span { float:left; padding-left:30px; height:11px; width:100%; text-indent:-9999px;}
+.controller-work_load .workload.day span.tarea1 { background:url(../images/tarea1_border.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea2 { background:url(../images/tarea2_border.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea3 { background:url(../images/tarea3_border.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea4 { background:url(../images/tarea4_border.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea5 { background:url(../images/tarea5_border.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea6 { background:url(../images/tarea6_border.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea7 { background:url(../images/tarea7_border.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea8 { background:url(../images/tarea8_border.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea9 { background:url(../images/tarea11.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea_a { background:url(../images/tarea9_border.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea_g { background:url(../images/tarea10_border.png) repeat-y left;}
+.controller-work_load .workload.day span.remanente {background:url(../images/remanente.png) repeat-y left;}
+
+.controller-work_load .workload.day span.total { float:left; padding-left:30px; height:25px; width:100%; display:block; text-indent:-9999px;}
+.controller-work_load .workload.day span.tarea0.total { background:transparent none;}
+.controller-work_load .workload.day span.tarea1.total { background:url(../images/tarea1.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea2.total { background:url(../images/tarea2.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea3.total { background:url(../images/tarea3.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea4.total { background:url(../images/tarea4.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea5.total { background:url(../images/tarea5.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea6.total { background:url(../images/tarea6.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea7.total { background:url(../images/tarea7.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea8.total { background:url(../images/tarea8.png) repeat-y left; padding-left:0px; text-align: center; padding-top:7px; height:18px; font-size:10px; color:#ffffff; text-indent:0px;}
+.controller-work_load .workload.day span.tarea9.total { background:url(../images/tarea_11.png) repeat-y left; padding-left:0px; text-align: center; padding-top:7px; height:18px; font-size:10px; color:#f53705; text-indent:0px;}
+.controller-work_load .workload.day span.tarea_a.total { background:url(../images/tarea9.png) repeat-y left;}
+.controller-work_load .workload.day span.tarea_g.total { background:url(../images/tarea10.png) repeat-y left;}
+
 .controller-work_load #content .user {width:100%; float:left; height:auto; text-align:left; border-bottom:3px solid #999;  min-height: 82px;}
 .controller-work_load #content .user .user_name {float:left; margin-top:10px; width:100%;}
 .controller-work_load #content .user .user_name span{ font-size:15px; font-weight:bold; color:#666666;}
