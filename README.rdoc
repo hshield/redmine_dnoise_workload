@@ -36,6 +36,10 @@ scarce human resources
 
 = Releases
 
+== version 2.0.1
+* Fix: when chart's header stays at the top, it pushes the data up
+* Hide the number zero when the total hour for the issue of that day is zero. This might happened for parent issue
+
 == version 2.0
 * Fix: issues in the chart aren't showing if they are in the first week of the calendar
 * Change the page header to make it similar to other Redmine pages
