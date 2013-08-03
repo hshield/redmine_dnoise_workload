@@ -35,8 +35,8 @@
 .controller-work_load .header_content_bottom_left .multiselect select {float:left; margin:0 10px 0 0; padding:3px; font-size: 0.9em; color:#8C8C8C; font-weight:normal;}
 
 .controller-work_load .all { width:100%; max-height:650px; overflow:auto; border-right: 2px solid #C0C0C0; z-index: 0;padding-bottom:50px; position:relative;}
-.controller-work_load #top, .controller-work_load #top_clone {width:3276px; height:55px; position:relative;z-index:10;}
-.controller-work_load #bottom {width:3276px; height:auto !important; }
+.controller-work_load #top {width:3276px; height:55px; position:absolute; left:0; z-index:10;}
+.controller-work_load #bottom {width:3276px; height:auto !important; padding-top:55px; }
 .controller-work_load #top_left {float:left; width:330px;height:54px;background:#eeeeee none no-repeat 30px 15px; position:relative; border-left: 1px solid #C0C0C0;}
 .controller-work_load #top_right {float:left; width:2943px; height: 54px;background: #eee; position:relative;}
 .controller-work_load #bottom-left { position:relative; float:left; height: auto !important;}

@@ -67,6 +67,7 @@ jQuery(document).ready(function($) {
 		}, ".user_each_hours");
 
 	var top_obj = $("#top");
+/*
 	var top_obj_height = top_obj.height();
 	var top_obj_mid_height = top_obj_height / 2;
 
@@ -80,10 +81,16 @@ jQuery(document).ready(function($) {
 							})
 							.hide()
 							.prependTo(".all");
-
+*/
 	$(".all").on("scroll", function(e) {
 		var container_scroll_top = $(this).scrollTop();
 
+		top_obj
+			.stop()
+			.animate({
+				top: container_scroll_top
+			}, "fast");
+/*
 		// animate show
 		if (container_scroll_top > top_obj_height) {
 			top_obj.css("visibility", "hidden");
@@ -124,6 +131,7 @@ jQuery(document).ready(function($) {
 			// make sure that it always visible the the clone isn't showing anymore
 			top_obj.css("visibility", "visible");
 		}
+*/
 	});
 
 	//COMPROBAR SI UNA TAREA REMANENTE TIENE SUBTAREAS ASOCIADAS

@@ -44,7 +44,7 @@ class WorkLoadController < ApplicationController
 
     @lunes = @gantt.date_from.to_date
 	#@dias_hasta_el_lunes.times do @lunes = @lunes.next end
-    @number_of_weeks = (@gantt.date_to.cweek - @gantt.date_from.cweek) + 1
+    @number_of_weeks = (@gantt.date_to.cwyear - @gantt.date_from.cwyear) + 1
 
 	# start from the next month
     current_date = @gantt.date_from >> 1
