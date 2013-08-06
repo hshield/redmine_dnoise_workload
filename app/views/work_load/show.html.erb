@@ -72,15 +72,30 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 
 <%= error_messages_for 'query' %>
 
+<%
+	# calculate the length of the #top / #bottom divs
+	# The current css assumes that the range is always 6 months
+	div_width = 0
+	current_date = @gantt.date_from
+	while (current_date < @gantt.date_to) do
+		# go to next month
+		current_date = current_date >> 1
 
+		# add the previous month
+		div_width = div_width + ((current_date - 1).mday * 16)
+	end
+	
+	# add the left area
+	div_container_width = div_width + 333;	# width of left area + border
+%>
 
 <div class="all">
 
-	<div id="top">
+	<div id="top" style="width:<%= div_container_width.to_s %>px">
 		<div class="gantt_hdr" id="top_left">
 			&nbsp;
 		</div>
-		<div class="gantt_hdr" id="top_right">
+		<div id="top_right" class="gantt_hdr" style="width:<%= div_width.to_s %>px">
 			<div class="months_per_year">
 				<%
 				#
@@ -158,7 +173,7 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 		</div>
 	</div> <!-- /#top -->
 
-	<div id="bottom">
+	<div id="bottom" style="width:<%= div_container_width.to_s %>px">
 
 		<div class="workload">
 			<%
@@ -351,12 +366,17 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 
 		</div>
 
-		<div class="all_users_workload" style="background-position:<%=pos_background%>px 0px">
+		<div class="all_users_workload" style="background-position:<%=pos_background%>px 0px;width:<%= div_width.to_s %>px">
 			<%
 				@usuarios.each do |user|
 					workload = @utils.sumIssuesTimes(workload_by_user[user.id])
 			%>
 					<div class="total_user_workload">
+						<!-- 
+							number of weeks: <%= @number_of_weeks %> 
+							cweek: from <%= @gantt.date_from.cweek %>, to <%= @gantt.date_to.cweek %>
+							cwyear: from <%= @gantt.date_from.cwyear %>, to <%= @gantt.date_to.cwyear %>
+						-->
 						<%
 							# current_date is always monday, except for the first week
 							current_date = @gantt.date_from
@@ -416,14 +436,21 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 									<%
 										counter = 1
 										issues_by_user[user.id].each do |issue|
-											if( params[:show_issues] == "1" ) then
+											if ( params[:show_issues] == "1" ) then
 									%>
 												<div class="workload tarea issue_<%=issue.id%>">
 													<%
 														current_day = current_date
 														num_days_this_week.times do |x|
+															span_style = ''
+															
+															# must overwrite the css styles for the first week, 
+															# because the first week doesn't always starts with monday
+															if (c == 0) then
+																span_style = 'left:' + (x * 16).to_s + 'px'
+															end
 													%>
-															<div class="workload day day-<%= current_day.strftime("%w") %> <%= current_day.strftime("%a").downcase %>">
+															<div class="workload day day-<%= current_day.strftime("%w") %> <%= current_day.strftime("%a").downcase %>" style="<%= span_style %>">
 																<%
 																	span_class = 'tarea' + calculos[issue.id].get_load_by_day(current_day.strftime('%Y-%m-%d')).to_s + ' ' +
 																				'date-' + current_day.strftime('%Y-%m-%d')
@@ -438,7 +465,6 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 											<% elsif params[:show_issues] != "1" %>
 												<div class="workload tarea tarea1"> </div>
 										
-											%>
 												<div class="workload tarea"></div>
 									<%
 											end		# end if

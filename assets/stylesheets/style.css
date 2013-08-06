@@ -40,7 +40,7 @@
 .controller-work_load #top_left {float:left; width:330px;height:54px;background:#eeeeee none no-repeat 30px 15px; position:relative; border-left: 1px solid #C0C0C0;}
 .controller-work_load #top_right {float:left; width:2943px; height: 54px;background: #eee; position:relative;}
 .controller-work_load #bottom-left { position:relative; float:left; height: auto !important;}
-.controller-work_load .workload { float:left; padding-left:30px; font-size:12px; width:300px; border-left: 1px solid #c0c0c0; border-right: 1px solid #c0c0c0;}
+.controller-work_load .workload { float:left; ; font-size:12px; width:330px; border-left: 1px solid #c0c0c0; border-right: 1px solid #c0c0c0;}
 .controller-work_load .workload.day { float:left; width: 16px; padding-left:0; margin-left:0; margin-top:0; position:relative;border:0; }
 .controller-work_load .workload.day.mon {left:0; width: 0; float:left;}
 .controller-work_load .workload.day.tue {left:16px; width: 0; float:left;}
@@ -78,7 +78,7 @@
 .controller-work_load .workload.day span.tarea_a.total { background:url(../images/tarea9.png) repeat-y left;}
 .controller-work_load .workload.day span.tarea_g.total { background:url(../images/tarea10.png) repeat-y left;}
 
-.controller-work_load #content .user {width:100%; float:left; height:auto; text-align:left; border-bottom:3px solid #999;  min-height: 82px;}
+.controller-work_load #content .user {width:100%; float:left; height:auto; text-align:left; border-bottom:3px solid #999;  min-height: 82px; padding: 0 10px;}
 .controller-work_load #content .user .user_name {float:left; margin-top:10px; width:100%;}
 .controller-work_load #content .user .user_name span{ font-size:15px; font-weight:bold; color:#666666;}
 
