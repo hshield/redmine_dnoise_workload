@@ -10,6 +10,7 @@ en:
   label_users: "Users"
   label_showissues: "Show Issues"
   label_show_holidays: "Show Holidays"
+  label_show_past_holidays: "Show Past Holidays"
   label_legend: "Legend"
   label_hour: "Hour"
   label_timing: "Timing"

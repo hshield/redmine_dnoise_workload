@@ -1,18 +1,18 @@
 <%
-@gantt.view = self
-subject_width = 330
-header_height = 18
-show_date = true
-show_days = true
-headers_height = 3*header_height
-zoom = 16
-column_width = 16;
+	@gantt.view = self
+	subject_width = 330
+	header_height = 18
+	show_date = true
+	show_days = true
+	headers_height = 3*header_height
+	zoom = 16
+	column_width = 16;
 
-g_width = (@gantt.date_to - @gantt.date_from + 1)*zoom
-g_height = [(20 * (10 + 6))+150, 206].max
-t_height = g_height + headers_height
-calculos = {}
-pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
+	g_width = (@gantt.date_to - @gantt.date_from + 1)*zoom
+	g_height = [(20 * (10 + 6))+150, 206].max
+	t_height = g_height + headers_height
+	calculos = {}
+	pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 
 %>
 <h2><%= l(:workload_title) %></h2>
@@ -65,12 +65,22 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 					</div>
 
 					<% if @has_holidays_plugin %>
-						<div>
-							<span>
-								<%= check_box_tag "show_holidays", "1", params[:show_holidays] == "1" %>
-								<label for="show_holidays"><%= l(:label_show_holidays) %></label>
-							</span>
-						</div>
+						<fieldset>
+							<legend><%= l(:label_holidays) %></legend>
+							<div>
+								<span>
+									<%= check_box_tag "show_holidays", "1", params[:show_holidays] == "1" %>
+									<label for="show_holidays"><%= l(:label_show_holidays) %></label>
+								</span>
+							</div>
+
+							<div>
+								<span>
+									<%= check_box_tag "show_past_holidays", "1", params[:show_past_holidays] == "1" %>
+									<label for="show_past_holidays"><%= l(:label_show_past_holidays) %></label>
+								</span>
+							</div>
+						</fieldset>
 					<% end %>
 				</div>
 
@@ -377,10 +387,10 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 							</div>
 						<% end %>
 
+						<!-- show past holidays: <%= @show_past_holidays.to_s %> -->
 						<!-- user holidays -->
 						<% if params[:show_holidays] == "1" %>
-							<% user_holidays = user.holidays.search(@gantt.date_from, @gantt.date_to, true) %>
-
+							<% user_holidays = user.holidays.search(@gantt.date_from, @gantt.date_to, @show_past_holidays) %>
 							<div class="user-holidays">
 								<% if !user_holidays.empty? %>
 									<div class="title"><%= l(:label_holidays) %></div>
@@ -474,7 +484,7 @@ pos_background = (16 * (8 - @gantt.date_from.to_date.cwday ))-1
 
 								<!-- user holidays -->
 								<% if @has_holidays_plugin %>
-									<% user_holidays = user.holidays.search(@gantt.date_from, @gantt.date_to, true) %>
+									<% user_holidays = user.holidays.search(@gantt.date_from, @gantt.date_to, @show_past_holidays) %>
 									<%= render :partial => "show_user_holidays",
 												:locals => {
 													:user => user,

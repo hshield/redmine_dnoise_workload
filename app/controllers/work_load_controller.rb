@@ -88,6 +88,9 @@ class WorkLoadController < ApplicationController
 		end
 
 		params[:show_holidays] = "1" unless params[:show_holidays]
+		params[:show_past_holidays] = "" unless params[:show_past_holidays]
+
+		@show_past_holidays = (params[:show_past_holidays] == "1")
 
 		# retrieve holiday types
 		@holiday_types = HolidayTypes.all(:order => "name ASC")
