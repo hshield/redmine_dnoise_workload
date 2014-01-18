@@ -2,25 +2,27 @@
 en:
 # title
   workload_title: "Workload"
-  
+
 # label
   label_range: "Range"
   label_monthsfrom: "months from"
   label_today: "Today"
   label_users: "Users"
   label_showissues: "Show Issues"
+  label_show_holidays: "Show Holidays"
   label_legend: "Legend"
+  label_hour: "Hour"
   label_timing: "Timing"
   label_perfect: "Perfect"
-  label_ontime: "On Time" 
+  label_ontime: "On Time"
   label_delay: "Delay"
   label_bigdelay: "Prolong Delay"
-  label_notiming: "No Timing" 
+  label_notiming: "No Timing"
   label_parentdoadd: "Parent Task doesn't add up"
-  label_timespent: "Time Spent" 
-  label_parentdontadd: "Parent Task (does not add up)" 
-  label_past: "Past" 
-  label_outoftimebudget: "Out of time budget" 
+  label_timespent: "Time Spent"
+  label_parentdontadd: "Parent Task (does not add up)"
+  label_past: "Past"
+  label_outoftimebudget: "Out of time budget"
 
 # navigation
   label_previous: "Previous"

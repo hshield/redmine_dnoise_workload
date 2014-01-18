@@ -1,0 +1,37 @@
+<% counter = 1 %>
+<% user_holidays.each do |holiday| %>
+	<% if params[:show_holidays] == "1" then %>
+
+		<div class="workload tarea user-holidays index-<%= counter %> holiday-<%= holiday.id %>">
+			<%
+				current_day = current_date
+				num_days_this_week.times do |x|
+					span_style = ''
+
+					# must overwrite the css styles for the first week,
+					# because the first week doesn't always starts with monday
+					if (week_index == 0) then
+						span_style = 'left:' + (x * 16).to_s + 'px'
+					end
+			%>
+					<div class="workload day day-<%= current_day.strftime("%w") %> <%= current_day.strftime("%a").downcase %>" style="<%= span_style %>">
+						<% if (current_day >= holiday.start_date) && (current_day <= holiday.due_date) %>
+							<% span_class = 'tarea holiday holiday-' + holiday.id.to_s + ' date-' + current_day.strftime('%Y-%m-%d') %>
+							<span class="<%= span_class %>" style="background-color:<%= holiday.holiday_types.color %>"><!-- horas totales  <%=current_day.strftime("%Y-%m-%d") %> --></span>
+						<% end %>
+					</div>
+			<%
+					# get the next day
+					current_day = current_day.next
+
+				end		# end num_days_this_week.times
+			%>
+
+		</div>
+
+	<% else %>
+		<div class="workload tarea user-holidays index-<%= counter %>"></div>
+	<% end %>
+
+	<% counter = counter + 1 %>
+<% end %>

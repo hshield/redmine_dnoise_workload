@@ -36,6 +36,9 @@ scarce human resources
 
 = Releases
 
+== version 2.1
+* Support *redmine_holidays* plugin (https://github.com/hshield/redmine_holidays)
+
 == version 2.0.1
 * Fix: when chart's header stays at the top, it pushes the data up
 * Hide the number zero when the total hour for the issue of that day is zero. This might happened for parent issue

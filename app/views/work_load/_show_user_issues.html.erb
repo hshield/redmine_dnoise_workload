@@ -1,0 +1,55 @@
+<%
+	issues_by_user[user.id].each do |issue|
+		if params[:show_issues] == "1" then
+%>
+			<div class="workload tarea issue_<%=issue.id%>">
+				<%
+					current_day = current_date
+					num_days_this_week.times do |x|
+						span_style = ''
+
+						# must overwrite the css styles for the first week,
+						# because the first week doesn't always starts with monday
+						if (week_index == 0) then
+							span_style = 'left:' + (x * 16).to_s + 'px'
+						end
+				%>
+						<div class="workload day day-<%= current_day.strftime("%w") %> <%= current_day.strftime("%a").downcase %>" style="<%= span_style %>">
+							<%
+								span_class = 'tarea' + calculos[issue.id].get_load_by_day(current_day.strftime('%Y-%m-%d')).to_s + ' ' +
+											'date-' + current_day.strftime('%Y-%m-%d')
+							%>
+							<span class="<%= span_class %>"><!-- horas totales  <%=current_day.strftime("%Y-%m-%d") %> --></span>
+						</div>
+				<%
+						current_day = current_day.next
+					end
+				%>
+			</div>
+		<% else %>
+			<div class="workload tarea"></div>
+<%
+		end		# end if
+	end		# end issue_by_user
+%>
+
+<% if params[:show_issues] == "1" %>
+	<div class="workload tarea undefined">
+		<div class="workload tarea undefined header"></div>
+		<%
+			issues_remanentes_by_user[user.id].each do |issue|
+		%>
+				<div class="workload tarea issue_<%=issue.id%>">
+					<%
+						current_day = current_date
+						num_days_this_week.times do |x|
+					%>
+							<div class="workload day day-<%= current_day.strftime("%w") %> <%= current_day.strftime("%a").downcase %>"><span class="tarea <%=(@utils.issue_have_work(issue, current_day)) ? 'tarea_u' :'blank' %>"></span></div>
+					<%
+							current_day = current_day.next
+						end
+					%>
+				</div>
+		<% end %>
+	</div>
+<% end %>

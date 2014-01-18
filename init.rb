@@ -6,7 +6,7 @@ require_dependency 'calculos_tareas'
 Redmine::Plugin.register :redmine_dnoise_workload do
   name 'Redmine Dnoise Workload plugin'
   description 'This is a plugin for Redmine Workload'
-  version '2.0'
+  version '2.1'
   url 'https://github.com/hshield/redmine_dnoise_workload'
 
   project_module :workload do
