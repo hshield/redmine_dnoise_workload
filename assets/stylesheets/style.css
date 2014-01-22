@@ -86,7 +86,8 @@
 .controller-work_load #content .user .user_total_hours span.remanente { background:url(../images/remanente.png) no-repeat left; height:11px; color:#666;}
 .controller-work_load #content .user .user_total_hours strong {color:#6699ff;}
 
-.controller-work_load #content .user .user_each_hours { padding-top:12px; width:100%; position: relative; }
+.controller-work_load #content .user .user_each_hours { padding-top:12px; width:100%; max-width: 310px; position: relative; }
+.controller-work_load #content .user .user_each_hours .info-title { height: 16px; overflow: hidden; }
 .controller-work_load #content .user .user_each_hours > span { height:15px; max-width:265px; width:auto; color:#666; }
 .controller-work_load #content .user .user_each_hours span.tarea1 { background:url(../images/perfect.png) no-repeat left; }
 .controller-work_load #content .user .user_each_hours span.tarea2 { background:url(../images/on_time.png) no-repeat left; }

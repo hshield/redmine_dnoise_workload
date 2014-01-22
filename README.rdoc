@@ -1,10 +1,6 @@
 = redmine_dnoise_workload
 
-This is a a plugin for Redmine version 2.2.0, 2.2.1, 2.2.2.
-It is compatible with the following Redmine versions:
-* 2.2.0
-* 2.2.1
-* 2.2.2
+This is a a plugin for Redmine version 2.2.x.
 
 Thanks to speedy for his internalization modification & dnoise for his original works.
 
@@ -18,9 +14,10 @@ also advise if a project doesn’t have assigned and also beginning and end date
 * This plug-in determines the timing of an application, showing different status: on time, delayed, etc
 * This plugin is especially helpful in organisations with a high workload and/or an organisation with
 scarce human resources
+* Display holidays (using redmine_holidays from https://github.com/hshield/redmine_holidays) plugin
 
 = Requirements
-* Redmine 2.2.0 / Redmine 2.2.1 / Redmine 2.2.2
+* Redmine 2.2.x
 
 = Installation
 * Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins
@@ -35,6 +32,12 @@ scarce human resources
 * The Workload module in the Project's page isn't used. So, you can enable / disable it with no effects to the Workload page at all
 
 = Releases
+
+== version 2.1.2
+* Fix: When the issue name is longer than it should be, it will be displayed in 2 lines
+
+== version 2.1.1
+* Add option to Show Past Holidays
 
 == version 2.1
 * Support *redmine_holidays* plugin (https://github.com/hshield/redmine_holidays)
